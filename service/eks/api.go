@@ -13,6 +13,96 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCreateAddon = "CreateAddon"
+
+// CreateAddonRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAddon operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAddon for more information on using the CreateAddon
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAddonRequest method.
+//    req, resp := client.CreateAddonRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/CreateAddon
+func (c *EKS) CreateAddonRequest(input *CreateAddonInput) (req *request.Request, output *CreateAddonOutput) {
+	op := &request.Operation{
+		Name:       opCreateAddon,
+		HTTPMethod: "POST",
+		HTTPPath:   "/clusters/{name}/addons",
+	}
+
+	if input == nil {
+		input = &CreateAddonInput{}
+	}
+
+	output = &CreateAddonOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAddon API operation for Amazon Elastic Kubernetes Service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation CreateAddon for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * InvalidRequestException
+//   The request is invalid given the state of the cluster. Check the state of
+//   the cluster and the associated operations.
+//
+//   * ClientException
+//   These errors are usually caused by a client action. Actions can include using
+//   an action or resource on behalf of a user that doesn't have permissions to
+//   use the action or resource or specifying an identifier that is not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/CreateAddon
+func (c *EKS) CreateAddon(input *CreateAddonInput) (*CreateAddonOutput, error) {
+	req, out := c.CreateAddonRequest(input)
+	return out, req.Send()
+}
+
+// CreateAddonWithContext is the same as CreateAddon with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAddon for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) CreateAddonWithContext(ctx aws.Context, input *CreateAddonInput, opts ...request.Option) (*CreateAddonOutput, error) {
+	req, out := c.CreateAddonRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCluster = "CreateCluster"
 
 // CreateClusterRequest generates a "aws/request.Request" representing the
@@ -400,6 +490,96 @@ func (c *EKS) CreateNodegroupWithContext(ctx aws.Context, input *CreateNodegroup
 	return out, req.Send()
 }
 
+const opDeleteAddon = "DeleteAddon"
+
+// DeleteAddonRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAddon operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAddon for more information on using the DeleteAddon
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAddonRequest method.
+//    req, resp := client.DeleteAddonRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DeleteAddon
+func (c *EKS) DeleteAddonRequest(input *DeleteAddonInput) (req *request.Request, output *DeleteAddonOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAddon,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/clusters/{name}/addons/{addonName}",
+	}
+
+	if input == nil {
+		input = &DeleteAddonInput{}
+	}
+
+	output = &DeleteAddonOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteAddon API operation for Amazon Elastic Kubernetes Service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation DeleteAddon for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * InvalidRequestException
+//   The request is invalid given the state of the cluster. Check the state of
+//   the cluster and the associated operations.
+//
+//   * ClientException
+//   These errors are usually caused by a client action. Actions can include using
+//   an action or resource on behalf of a user that doesn't have permissions to
+//   use the action or resource or specifying an identifier that is not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DeleteAddon
+func (c *EKS) DeleteAddon(input *DeleteAddonInput) (*DeleteAddonOutput, error) {
+	req, out := c.DeleteAddonRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAddonWithContext is the same as DeleteAddon with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAddon for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) DeleteAddonWithContext(ctx aws.Context, input *DeleteAddonInput, opts ...request.Option) (*DeleteAddonOutput, error) {
+	req, out := c.DeleteAddonRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteCluster = "DeleteCluster"
 
 // DeleteClusterRequest generates a "aws/request.Request" representing the
@@ -703,6 +883,182 @@ func (c *EKS) DeleteNodegroup(input *DeleteNodegroupInput) (*DeleteNodegroupOutp
 // for more information on using Contexts.
 func (c *EKS) DeleteNodegroupWithContext(ctx aws.Context, input *DeleteNodegroupInput, opts ...request.Option) (*DeleteNodegroupOutput, error) {
 	req, out := c.DeleteNodegroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAddon = "DescribeAddon"
+
+// DescribeAddonRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAddon operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAddon for more information on using the DescribeAddon
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAddonRequest method.
+//    req, resp := client.DescribeAddonRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DescribeAddon
+func (c *EKS) DescribeAddonRequest(input *DescribeAddonInput) (req *request.Request, output *DescribeAddonOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAddon,
+		HTTPMethod: "GET",
+		HTTPPath:   "/clusters/{name}/addons/{addonName}",
+	}
+
+	if input == nil {
+		input = &DescribeAddonInput{}
+	}
+
+	output = &DescribeAddonOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAddon API operation for Amazon Elastic Kubernetes Service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation DescribeAddon for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * InvalidRequestException
+//   The request is invalid given the state of the cluster. Check the state of
+//   the cluster and the associated operations.
+//
+//   * ClientException
+//   These errors are usually caused by a client action. Actions can include using
+//   an action or resource on behalf of a user that doesn't have permissions to
+//   use the action or resource or specifying an identifier that is not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DescribeAddon
+func (c *EKS) DescribeAddon(input *DescribeAddonInput) (*DescribeAddonOutput, error) {
+	req, out := c.DescribeAddonRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAddonWithContext is the same as DescribeAddon with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAddon for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) DescribeAddonWithContext(ctx aws.Context, input *DescribeAddonInput, opts ...request.Option) (*DescribeAddonOutput, error) {
+	req, out := c.DescribeAddonRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAddonVersions = "DescribeAddonVersions"
+
+// DescribeAddonVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAddonVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAddonVersions for more information on using the DescribeAddonVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAddonVersionsRequest method.
+//    req, resp := client.DescribeAddonVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DescribeAddonVersions
+func (c *EKS) DescribeAddonVersionsRequest(input *DescribeAddonVersionsInput) (req *request.Request, output *DescribeAddonVersionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAddonVersions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/addons/supported-versions",
+	}
+
+	if input == nil {
+		input = &DescribeAddonVersionsInput{}
+	}
+
+	output = &DescribeAddonVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAddonVersions API operation for Amazon Elastic Kubernetes Service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation DescribeAddonVersions for usage and error information.
+//
+// Returned Error Types:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found. You can view your available clusters
+//   with ListClusters. You can view your available managed node groups with ListNodegroups.
+//   Amazon EKS clusters and node groups are Region-specific.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DescribeAddonVersions
+func (c *EKS) DescribeAddonVersions(input *DescribeAddonVersionsInput) (*DescribeAddonVersionsOutput, error) {
+	req, out := c.DescribeAddonVersionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAddonVersionsWithContext is the same as DescribeAddonVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAddonVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) DescribeAddonVersionsWithContext(ctx aws.Context, input *DescribeAddonVersionsInput, opts ...request.Option) (*DescribeAddonVersionsOutput, error) {
+	req, out := c.DescribeAddonVersionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1090,6 +1446,101 @@ func (c *EKS) DescribeUpdate(input *DescribeUpdateInput) (*DescribeUpdateOutput,
 // for more information on using Contexts.
 func (c *EKS) DescribeUpdateWithContext(ctx aws.Context, input *DescribeUpdateInput, opts ...request.Option) (*DescribeUpdateOutput, error) {
 	req, out := c.DescribeUpdateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListAddons = "ListAddons"
+
+// ListAddonsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAddons operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAddons for more information on using the ListAddons
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAddonsRequest method.
+//    req, resp := client.ListAddonsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/ListAddons
+func (c *EKS) ListAddonsRequest(input *ListAddonsInput) (req *request.Request, output *ListAddonsOutput) {
+	op := &request.Operation{
+		Name:       opListAddons,
+		HTTPMethod: "GET",
+		HTTPPath:   "/clusters/{name}/addons",
+	}
+
+	if input == nil {
+		input = &ListAddonsInput{}
+	}
+
+	output = &ListAddonsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAddons API operation for Amazon Elastic Kubernetes Service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation ListAddons for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * InvalidRequestException
+//   The request is invalid given the state of the cluster. Check the state of
+//   the cluster and the associated operations.
+//
+//   * ClientException
+//   These errors are usually caused by a client action. Actions can include using
+//   an action or resource on behalf of a user that doesn't have permissions to
+//   use the action or resource or specifying an identifier that is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found. You can view your available clusters
+//   with ListClusters. You can view your available managed node groups with ListNodegroups.
+//   Amazon EKS clusters and node groups are Region-specific.
+//
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/ListAddons
+func (c *EKS) ListAddons(input *ListAddonsInput) (*ListAddonsOutput, error) {
+	req, out := c.ListAddonsRequest(input)
+	return out, req.Send()
+}
+
+// ListAddonsWithContext is the same as ListAddons with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAddons for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) ListAddonsWithContext(ctx aws.Context, input *ListAddonsInput, opts ...request.Option) (*ListAddonsOutput, error) {
+	req, out := c.ListAddonsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1964,6 +2415,96 @@ func (c *EKS) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInpu
 	return out, req.Send()
 }
 
+const opUpdateAddon = "UpdateAddon"
+
+// UpdateAddonRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAddon operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAddon for more information on using the UpdateAddon
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAddonRequest method.
+//    req, resp := client.UpdateAddonRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/UpdateAddon
+func (c *EKS) UpdateAddonRequest(input *UpdateAddonInput) (req *request.Request, output *UpdateAddonOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAddon,
+		HTTPMethod: "POST",
+		HTTPPath:   "/clusters/{name}/addons/{addonName}/update",
+	}
+
+	if input == nil {
+		input = &UpdateAddonInput{}
+	}
+
+	output = &UpdateAddonOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAddon API operation for Amazon Elastic Kubernetes Service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation UpdateAddon for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * InvalidRequestException
+//   The request is invalid given the state of the cluster. Check the state of
+//   the cluster and the associated operations.
+//
+//   * ClientException
+//   These errors are usually caused by a client action. Actions can include using
+//   an action or resource on behalf of a user that doesn't have permissions to
+//   use the action or resource or specifying an identifier that is not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/UpdateAddon
+func (c *EKS) UpdateAddon(input *UpdateAddonInput) (*UpdateAddonOutput, error) {
+	req, out := c.UpdateAddonRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAddonWithContext is the same as UpdateAddon with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAddon for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) UpdateAddonWithContext(ctx aws.Context, input *UpdateAddonInput, opts ...request.Option) (*UpdateAddonOutput, error) {
+	req, out := c.UpdateAddonRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateClusterConfig = "UpdateClusterConfig"
 
 // UpdateClusterConfigRequest generates a "aws/request.Request" representing the
@@ -2431,6 +2972,236 @@ func (c *EKS) UpdateNodegroupVersionWithContext(ctx aws.Context, input *UpdateNo
 	return out, req.Send()
 }
 
+type Addon struct {
+	_ struct{} `type:"structure"`
+
+	AddonArn *string `locationName:"addonArn" type:"string"`
+
+	AddonName *string `locationName:"addonName" type:"string"`
+
+	AddonVersion *string `locationName:"addonVersion" type:"string"`
+
+	ClusterName *string `locationName:"clusterName" min:"1" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	Health *AddonHealth `locationName:"health" type:"structure"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp"`
+
+	ServiceAccountRoleArn *string `locationName:"serviceAccountRoleArn" type:"string"`
+
+	Status *string `locationName:"status" type:"string" enum:"AddonStatus"`
+
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s Addon) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Addon) GoString() string {
+	return s.String()
+}
+
+// SetAddonArn sets the AddonArn field's value.
+func (s *Addon) SetAddonArn(v string) *Addon {
+	s.AddonArn = &v
+	return s
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *Addon) SetAddonName(v string) *Addon {
+	s.AddonName = &v
+	return s
+}
+
+// SetAddonVersion sets the AddonVersion field's value.
+func (s *Addon) SetAddonVersion(v string) *Addon {
+	s.AddonVersion = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *Addon) SetClusterName(v string) *Addon {
+	s.ClusterName = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *Addon) SetCreatedAt(v time.Time) *Addon {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetHealth sets the Health field's value.
+func (s *Addon) SetHealth(v *AddonHealth) *Addon {
+	s.Health = v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *Addon) SetModifiedAt(v time.Time) *Addon {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetServiceAccountRoleArn sets the ServiceAccountRoleArn field's value.
+func (s *Addon) SetServiceAccountRoleArn(v string) *Addon {
+	s.ServiceAccountRoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Addon) SetStatus(v string) *Addon {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Addon) SetTags(v map[string]*string) *Addon {
+	s.Tags = v
+	return s
+}
+
+type AddonHealth struct {
+	_ struct{} `type:"structure"`
+
+	Issues []*AddonIssue `locationName:"issues" type:"list"`
+}
+
+// String returns the string representation
+func (s AddonHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddonHealth) GoString() string {
+	return s.String()
+}
+
+// SetIssues sets the Issues field's value.
+func (s *AddonHealth) SetIssues(v []*AddonIssue) *AddonHealth {
+	s.Issues = v
+	return s
+}
+
+type AddonInfo struct {
+	_ struct{} `type:"structure"`
+
+	AddonName *string `locationName:"addonName" type:"string"`
+
+	AddonVersions []*AddonVersionInfo `locationName:"addonVersions" type:"list"`
+
+	Type *string `locationName:"type" type:"string"`
+}
+
+// String returns the string representation
+func (s AddonInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddonInfo) GoString() string {
+	return s.String()
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *AddonInfo) SetAddonName(v string) *AddonInfo {
+	s.AddonName = &v
+	return s
+}
+
+// SetAddonVersions sets the AddonVersions field's value.
+func (s *AddonInfo) SetAddonVersions(v []*AddonVersionInfo) *AddonInfo {
+	s.AddonVersions = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AddonInfo) SetType(v string) *AddonInfo {
+	s.Type = &v
+	return s
+}
+
+type AddonIssue struct {
+	_ struct{} `type:"structure"`
+
+	Code *string `locationName:"code" type:"string" enum:"AddonIssueCode"`
+
+	Message *string `locationName:"message" type:"string"`
+
+	ResourceIds []*string `locationName:"resourceIds" type:"list"`
+}
+
+// String returns the string representation
+func (s AddonIssue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddonIssue) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *AddonIssue) SetCode(v string) *AddonIssue {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AddonIssue) SetMessage(v string) *AddonIssue {
+	s.Message = &v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *AddonIssue) SetResourceIds(v []*string) *AddonIssue {
+	s.ResourceIds = v
+	return s
+}
+
+type AddonVersionInfo struct {
+	_ struct{} `type:"structure"`
+
+	AddonVersion *string `locationName:"addonVersion" type:"string"`
+
+	Architecture []*string `locationName:"architecture" type:"list"`
+
+	Compatibilities []*Compatibility `locationName:"compatibilities" type:"list"`
+}
+
+// String returns the string representation
+func (s AddonVersionInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddonVersionInfo) GoString() string {
+	return s.String()
+}
+
+// SetAddonVersion sets the AddonVersion field's value.
+func (s *AddonVersionInfo) SetAddonVersion(v string) *AddonVersionInfo {
+	s.AddonVersion = &v
+	return s
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *AddonVersionInfo) SetArchitecture(v []*string) *AddonVersionInfo {
+	s.Architecture = v
+	return s
+}
+
+// SetCompatibilities sets the Compatibilities field's value.
+func (s *AddonVersionInfo) SetCompatibilities(v []*Compatibility) *AddonVersionInfo {
+	s.Compatibilities = v
+	return s
+}
+
 // An Auto Scaling group that is associated with an Amazon EKS managed node
 // group.
 type AutoScalingGroup struct {
@@ -2546,6 +3317,8 @@ func (s *Certificate) SetData(v string) *Certificate {
 type ClientException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	AddonName *string `locationName:"addonName" type:"string"`
 
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
@@ -2772,6 +3545,163 @@ func (s *Cluster) SetTags(v map[string]*string) *Cluster {
 // SetVersion sets the Version field's value.
 func (s *Cluster) SetVersion(v string) *Cluster {
 	s.Version = &v
+	return s
+}
+
+type Compatibility struct {
+	_ struct{} `type:"structure"`
+
+	ClusterVersion *string `locationName:"clusterVersion" type:"string"`
+
+	DefaultVersion *bool `locationName:"defaultVersion" type:"boolean"`
+
+	PlatformVersions []*string `locationName:"platformVersions" type:"list"`
+}
+
+// String returns the string representation
+func (s Compatibility) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Compatibility) GoString() string {
+	return s.String()
+}
+
+// SetClusterVersion sets the ClusterVersion field's value.
+func (s *Compatibility) SetClusterVersion(v string) *Compatibility {
+	s.ClusterVersion = &v
+	return s
+}
+
+// SetDefaultVersion sets the DefaultVersion field's value.
+func (s *Compatibility) SetDefaultVersion(v bool) *Compatibility {
+	s.DefaultVersion = &v
+	return s
+}
+
+// SetPlatformVersions sets the PlatformVersions field's value.
+func (s *Compatibility) SetPlatformVersions(v []*string) *Compatibility {
+	s.PlatformVersions = v
+	return s
+}
+
+type CreateAddonInput struct {
+	_ struct{} `type:"structure"`
+
+	// AddonName is a required field
+	AddonName *string `locationName:"addonName" type:"string" required:"true"`
+
+	AddonVersion *string `locationName:"addonVersion" type:"string"`
+
+	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
+
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	ResolveConflicts *string `locationName:"resolveConflicts" type:"string" enum:"ResolveConflicts"`
+
+	ServiceAccountRoleArn *string `locationName:"serviceAccountRoleArn" min:"1" type:"string"`
+
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateAddonInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAddonInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAddonInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAddonInput"}
+	if s.AddonName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddonName"))
+	}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+	if s.ServiceAccountRoleArn != nil && len(*s.ServiceAccountRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceAccountRoleArn", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *CreateAddonInput) SetAddonName(v string) *CreateAddonInput {
+	s.AddonName = &v
+	return s
+}
+
+// SetAddonVersion sets the AddonVersion field's value.
+func (s *CreateAddonInput) SetAddonVersion(v string) *CreateAddonInput {
+	s.AddonVersion = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateAddonInput) SetClientRequestToken(v string) *CreateAddonInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *CreateAddonInput) SetClusterName(v string) *CreateAddonInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetResolveConflicts sets the ResolveConflicts field's value.
+func (s *CreateAddonInput) SetResolveConflicts(v string) *CreateAddonInput {
+	s.ResolveConflicts = &v
+	return s
+}
+
+// SetServiceAccountRoleArn sets the ServiceAccountRoleArn field's value.
+func (s *CreateAddonInput) SetServiceAccountRoleArn(v string) *CreateAddonInput {
+	s.ServiceAccountRoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAddonInput) SetTags(v map[string]*string) *CreateAddonInput {
+	s.Tags = v
+	return s
+}
+
+type CreateAddonOutput struct {
+	_ struct{} `type:"structure"`
+
+	Addon *Addon `locationName:"addon" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAddonOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAddonOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddon sets the Addon field's value.
+func (s *CreateAddonOutput) SetAddon(v *Addon) *CreateAddonOutput {
+	s.Addon = v
 	return s
 }
 
@@ -3102,6 +4032,8 @@ type CreateNodegroupInput struct {
 	// in the Amazon EKS User Guide.
 	AmiType *string `locationName:"amiType" type:"string" enum:"AMITypes"`
 
+	CapacityType *string `locationName:"capacityType" type:"string" enum:"CapacityTypes"`
+
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
 	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
@@ -3258,6 +4190,12 @@ func (s *CreateNodegroupInput) SetAmiType(v string) *CreateNodegroupInput {
 	return s
 }
 
+// SetCapacityType sets the CapacityType field's value.
+func (s *CreateNodegroupInput) SetCapacityType(v string) *CreateNodegroupInput {
+	s.CapacityType = &v
+	return s
+}
+
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateNodegroupInput) SetClientRequestToken(v string) *CreateNodegroupInput {
 	s.ClientRequestToken = &v
@@ -3362,6 +4300,82 @@ func (s CreateNodegroupOutput) GoString() string {
 // SetNodegroup sets the Nodegroup field's value.
 func (s *CreateNodegroupOutput) SetNodegroup(v *Nodegroup) *CreateNodegroupOutput {
 	s.Nodegroup = v
+	return s
+}
+
+type DeleteAddonInput struct {
+	_ struct{} `type:"structure"`
+
+	// AddonName is a required field
+	AddonName *string `location:"uri" locationName:"addonName" type:"string" required:"true"`
+
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAddonInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAddonInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAddonInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAddonInput"}
+	if s.AddonName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddonName"))
+	}
+	if s.AddonName != nil && len(*s.AddonName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AddonName", 1))
+	}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *DeleteAddonInput) SetAddonName(v string) *DeleteAddonInput {
+	s.AddonName = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *DeleteAddonInput) SetClusterName(v string) *DeleteAddonInput {
+	s.ClusterName = &v
+	return s
+}
+
+type DeleteAddonOutput struct {
+	_ struct{} `type:"structure"`
+
+	Addon *Addon `locationName:"addon" type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAddonOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAddonOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddon sets the Addon field's value.
+func (s *DeleteAddonOutput) SetAddon(v *Addon) *DeleteAddonOutput {
+	s.Addon = v
 	return s
 }
 
@@ -3589,6 +4603,171 @@ func (s DeleteNodegroupOutput) GoString() string {
 // SetNodegroup sets the Nodegroup field's value.
 func (s *DeleteNodegroupOutput) SetNodegroup(v *Nodegroup) *DeleteNodegroupOutput {
 	s.Nodegroup = v
+	return s
+}
+
+type DescribeAddonInput struct {
+	_ struct{} `type:"structure"`
+
+	// AddonName is a required field
+	AddonName *string `location:"uri" locationName:"addonName" type:"string" required:"true"`
+
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeAddonInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAddonInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAddonInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAddonInput"}
+	if s.AddonName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddonName"))
+	}
+	if s.AddonName != nil && len(*s.AddonName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AddonName", 1))
+	}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *DescribeAddonInput) SetAddonName(v string) *DescribeAddonInput {
+	s.AddonName = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *DescribeAddonInput) SetClusterName(v string) *DescribeAddonInput {
+	s.ClusterName = &v
+	return s
+}
+
+type DescribeAddonOutput struct {
+	_ struct{} `type:"structure"`
+
+	Addon *Addon `locationName:"addon" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAddonOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAddonOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddon sets the Addon field's value.
+func (s *DescribeAddonOutput) SetAddon(v *Addon) *DescribeAddonOutput {
+	s.Addon = v
+	return s
+}
+
+type DescribeAddonVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	AddonName *string `location:"querystring" locationName:"addonName" type:"string"`
+
+	KubernetesVersion *string `location:"querystring" locationName:"kubernetesVersion" type:"string"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeAddonVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAddonVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAddonVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAddonVersionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *DescribeAddonVersionsInput) SetAddonName(v string) *DescribeAddonVersionsInput {
+	s.AddonName = &v
+	return s
+}
+
+// SetKubernetesVersion sets the KubernetesVersion field's value.
+func (s *DescribeAddonVersionsInput) SetKubernetesVersion(v string) *DescribeAddonVersionsInput {
+	s.KubernetesVersion = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeAddonVersionsInput) SetMaxResults(v int64) *DescribeAddonVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAddonVersionsInput) SetNextToken(v string) *DescribeAddonVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeAddonVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Addons []*AddonInfo `locationName:"addons" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeAddonVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAddonVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddons sets the Addons field's value.
+func (s *DescribeAddonVersionsOutput) SetAddons(v []*AddonInfo) *DescribeAddonVersionsOutput {
+	s.Addons = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAddonVersionsOutput) SetNextToken(v string) *DescribeAddonVersionsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -3821,6 +5000,8 @@ func (s *DescribeNodegroupOutput) SetNodegroup(v *Nodegroup) *DescribeNodegroupO
 type DescribeUpdateInput struct {
 	_ struct{} `type:"structure"`
 
+	AddonName *string `location:"querystring" locationName:"addonName" type:"string"`
+
 	// The name of the Amazon EKS cluster associated with the update.
 	//
 	// Name is a required field
@@ -3865,6 +5046,12 @@ func (s *DescribeUpdateInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *DescribeUpdateInput) SetAddonName(v string) *DescribeUpdateInput {
+	s.AddonName = &v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -4172,6 +5359,8 @@ type InvalidParameterException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	AddonName *string `locationName:"addonName" type:"string"`
+
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
@@ -4237,6 +5426,8 @@ func (s *InvalidParameterException) RequestID() string {
 type InvalidRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	AddonName *string `locationName:"addonName" type:"string"`
 
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
@@ -4513,6 +5704,94 @@ func (s *LaunchTemplateSpecification) SetName(v string) *LaunchTemplateSpecifica
 // SetVersion sets the Version field's value.
 func (s *LaunchTemplateSpecification) SetVersion(v string) *LaunchTemplateSpecification {
 	s.Version = &v
+	return s
+}
+
+type ListAddonsInput struct {
+	_ struct{} `type:"structure"`
+
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAddonsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAddonsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAddonsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAddonsInput"}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *ListAddonsInput) SetClusterName(v string) *ListAddonsInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAddonsInput) SetMaxResults(v int64) *ListAddonsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAddonsInput) SetNextToken(v string) *ListAddonsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAddonsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Addons []*string `locationName:"addons" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAddonsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAddonsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddons sets the Addons field's value.
+func (s *ListAddonsOutput) SetAddons(v []*string) *ListAddonsOutput {
+	s.Addons = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAddonsOutput) SetNextToken(v string) *ListAddonsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -4891,6 +6170,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type ListUpdatesInput struct {
 	_ struct{} `type:"structure"`
 
+	AddonName *string `location:"querystring" locationName:"addonName" type:"string"`
+
 	// The maximum number of update results returned by ListUpdates in paginated
 	// output. When you use this parameter, ListUpdates returns only maxResults
 	// results in a single page along with a nextToken response element. You can
@@ -4942,6 +6223,12 @@ func (s *ListUpdatesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *ListUpdatesInput) SetAddonName(v string) *ListUpdatesInput {
+	s.AddonName = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -5073,6 +6360,8 @@ type Nodegroup struct {
 	// template, this is the AMI type that was specified in the node group configuration.
 	AmiType *string `locationName:"amiType" type:"string" enum:"AMITypes"`
 
+	CapacityType *string `locationName:"capacityType" type:"string" enum:"CapacityTypes"`
+
 	// The name of the cluster that the managed node group resides in.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
@@ -5168,6 +6457,12 @@ func (s Nodegroup) GoString() string {
 // SetAmiType sets the AmiType field's value.
 func (s *Nodegroup) SetAmiType(v string) *Nodegroup {
 	s.AmiType = &v
+	return s
+}
+
+// SetCapacityType sets the CapacityType field's value.
+func (s *Nodegroup) SetCapacityType(v string) *Nodegroup {
+	s.CapacityType = &v
 	return s
 }
 
@@ -5568,6 +6863,8 @@ type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	AddonName *string `locationName:"addonName" type:"string"`
+
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
@@ -5694,6 +6991,8 @@ type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	AddonName *string `locationName:"addonName" type:"string"`
+
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
@@ -5758,6 +7057,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 type ServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	AddonName *string `locationName:"addonName" type:"string"`
 
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
@@ -6154,6 +7455,118 @@ func (s *Update) SetStatus(v string) *Update {
 // SetType sets the Type field's value.
 func (s *Update) SetType(v string) *Update {
 	s.Type = &v
+	return s
+}
+
+type UpdateAddonInput struct {
+	_ struct{} `type:"structure"`
+
+	// AddonName is a required field
+	AddonName *string `location:"uri" locationName:"addonName" type:"string" required:"true"`
+
+	AddonVersion *string `locationName:"addonVersion" type:"string"`
+
+	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
+
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	ResolveConflicts *string `locationName:"resolveConflicts" type:"string" enum:"ResolveConflicts"`
+
+	ServiceAccountRoleArn *string `locationName:"serviceAccountRoleArn" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateAddonInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAddonInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAddonInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAddonInput"}
+	if s.AddonName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddonName"))
+	}
+	if s.AddonName != nil && len(*s.AddonName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AddonName", 1))
+	}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+	if s.ServiceAccountRoleArn != nil && len(*s.ServiceAccountRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceAccountRoleArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *UpdateAddonInput) SetAddonName(v string) *UpdateAddonInput {
+	s.AddonName = &v
+	return s
+}
+
+// SetAddonVersion sets the AddonVersion field's value.
+func (s *UpdateAddonInput) SetAddonVersion(v string) *UpdateAddonInput {
+	s.AddonVersion = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateAddonInput) SetClientRequestToken(v string) *UpdateAddonInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *UpdateAddonInput) SetClusterName(v string) *UpdateAddonInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetResolveConflicts sets the ResolveConflicts field's value.
+func (s *UpdateAddonInput) SetResolveConflicts(v string) *UpdateAddonInput {
+	s.ResolveConflicts = &v
+	return s
+}
+
+// SetServiceAccountRoleArn sets the ServiceAccountRoleArn field's value.
+func (s *UpdateAddonInput) SetServiceAccountRoleArn(v string) *UpdateAddonInput {
+	s.ServiceAccountRoleArn = &v
+	return s
+}
+
+type UpdateAddonOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object representing an asynchronous update.
+	Update *Update `locationName:"update" type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateAddonOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAddonOutput) GoString() string {
+	return s.String()
+}
+
+// SetUpdate sets the Update field's value.
+func (s *UpdateAddonOutput) SetUpdate(v *Update) *UpdateAddonOutput {
+	s.Update = v
 	return s
 }
 
@@ -6869,6 +8282,9 @@ const (
 
 	// AMITypesAl2Arm64 is a AMITypes enum value
 	AMITypesAl2Arm64 = "AL2_ARM_64"
+
+	// AMITypesCustom is a AMITypes enum value
+	AMITypesCustom = "CUSTOM"
 )
 
 // AMITypes_Values returns all elements of the AMITypes enum
@@ -6877,6 +8293,87 @@ func AMITypes_Values() []string {
 		AMITypesAl2X8664,
 		AMITypesAl2X8664Gpu,
 		AMITypesAl2Arm64,
+		AMITypesCustom,
+	}
+}
+
+const (
+	// AddonIssueCodeAccessDenied is a AddonIssueCode enum value
+	AddonIssueCodeAccessDenied = "AccessDenied"
+
+	// AddonIssueCodeInternalFailure is a AddonIssueCode enum value
+	AddonIssueCodeInternalFailure = "InternalFailure"
+
+	// AddonIssueCodeClusterUnreachable is a AddonIssueCode enum value
+	AddonIssueCodeClusterUnreachable = "ClusterUnreachable"
+
+	// AddonIssueCodeInsufficientNumberOfReplicas is a AddonIssueCode enum value
+	AddonIssueCodeInsufficientNumberOfReplicas = "InsufficientNumberOfReplicas"
+
+	// AddonIssueCodeConfigurationConflict is a AddonIssueCode enum value
+	AddonIssueCodeConfigurationConflict = "ConfigurationConflict"
+)
+
+// AddonIssueCode_Values returns all elements of the AddonIssueCode enum
+func AddonIssueCode_Values() []string {
+	return []string{
+		AddonIssueCodeAccessDenied,
+		AddonIssueCodeInternalFailure,
+		AddonIssueCodeClusterUnreachable,
+		AddonIssueCodeInsufficientNumberOfReplicas,
+		AddonIssueCodeConfigurationConflict,
+	}
+}
+
+const (
+	// AddonStatusCreating is a AddonStatus enum value
+	AddonStatusCreating = "CREATING"
+
+	// AddonStatusActive is a AddonStatus enum value
+	AddonStatusActive = "ACTIVE"
+
+	// AddonStatusCreateFailed is a AddonStatus enum value
+	AddonStatusCreateFailed = "CREATE_FAILED"
+
+	// AddonStatusUpdating is a AddonStatus enum value
+	AddonStatusUpdating = "UPDATING"
+
+	// AddonStatusDeleting is a AddonStatus enum value
+	AddonStatusDeleting = "DELETING"
+
+	// AddonStatusDeleteFailed is a AddonStatus enum value
+	AddonStatusDeleteFailed = "DELETE_FAILED"
+
+	// AddonStatusDegraded is a AddonStatus enum value
+	AddonStatusDegraded = "DEGRADED"
+)
+
+// AddonStatus_Values returns all elements of the AddonStatus enum
+func AddonStatus_Values() []string {
+	return []string{
+		AddonStatusCreating,
+		AddonStatusActive,
+		AddonStatusCreateFailed,
+		AddonStatusUpdating,
+		AddonStatusDeleting,
+		AddonStatusDeleteFailed,
+		AddonStatusDegraded,
+	}
+}
+
+const (
+	// CapacityTypesOnDemand is a CapacityTypes enum value
+	CapacityTypesOnDemand = "ON_DEMAND"
+
+	// CapacityTypesSpot is a CapacityTypes enum value
+	CapacityTypesSpot = "SPOT"
+)
+
+// CapacityTypes_Values returns all elements of the CapacityTypes enum
+func CapacityTypes_Values() []string {
+	return []string{
+		CapacityTypesOnDemand,
+		CapacityTypesSpot,
 	}
 }
 
@@ -6944,6 +8441,12 @@ const (
 
 	// ErrorCodeClusterUnreachable is a ErrorCode enum value
 	ErrorCodeClusterUnreachable = "ClusterUnreachable"
+
+	// ErrorCodeInsufficientNumberOfReplicas is a ErrorCode enum value
+	ErrorCodeInsufficientNumberOfReplicas = "InsufficientNumberOfReplicas"
+
+	// ErrorCodeConfigurationConflict is a ErrorCode enum value
+	ErrorCodeConfigurationConflict = "ConfigurationConflict"
 )
 
 // ErrorCode_Values returns all elements of the ErrorCode enum
@@ -6961,6 +8464,8 @@ func ErrorCode_Values() []string {
 		ErrorCodePodEvictionFailure,
 		ErrorCodeInsufficientFreeAddresses,
 		ErrorCodeClusterUnreachable,
+		ErrorCodeInsufficientNumberOfReplicas,
+		ErrorCodeConfigurationConflict,
 	}
 }
 
@@ -7137,6 +8642,22 @@ func NodegroupStatus_Values() []string {
 }
 
 const (
+	// ResolveConflictsOverwrite is a ResolveConflicts enum value
+	ResolveConflictsOverwrite = "OVERWRITE"
+
+	// ResolveConflictsNone is a ResolveConflicts enum value
+	ResolveConflictsNone = "NONE"
+)
+
+// ResolveConflicts_Values returns all elements of the ResolveConflicts enum
+func ResolveConflicts_Values() []string {
+	return []string{
+		ResolveConflictsOverwrite,
+		ResolveConflictsNone,
+	}
+}
+
+const (
 	// UpdateParamTypeVersion is a UpdateParamType enum value
 	UpdateParamTypeVersion = "Version"
 
@@ -7172,6 +8693,12 @@ const (
 
 	// UpdateParamTypePublicAccessCidrs is a UpdateParamType enum value
 	UpdateParamTypePublicAccessCidrs = "PublicAccessCidrs"
+
+	// UpdateParamTypeLaunchTemplateName is a UpdateParamType enum value
+	UpdateParamTypeLaunchTemplateName = "LaunchTemplateName"
+
+	// UpdateParamTypeLaunchTemplateVersion is a UpdateParamType enum value
+	UpdateParamTypeLaunchTemplateVersion = "LaunchTemplateVersion"
 )
 
 // UpdateParamType_Values returns all elements of the UpdateParamType enum
@@ -7189,6 +8716,8 @@ func UpdateParamType_Values() []string {
 		UpdateParamTypeMinSize,
 		UpdateParamTypeReleaseVersion,
 		UpdateParamTypePublicAccessCidrs,
+		UpdateParamTypeLaunchTemplateName,
+		UpdateParamTypeLaunchTemplateVersion,
 	}
 }
 
@@ -7228,6 +8757,9 @@ const (
 
 	// UpdateTypeConfigUpdate is a UpdateType enum value
 	UpdateTypeConfigUpdate = "ConfigUpdate"
+
+	// UpdateTypeAddonUpdate is a UpdateType enum value
+	UpdateTypeAddonUpdate = "AddonUpdate"
 )
 
 // UpdateType_Values returns all elements of the UpdateType enum
@@ -7237,5 +8769,6 @@ func UpdateType_Values() []string {
 		UpdateTypeEndpointAccessUpdate,
 		UpdateTypeLoggingUpdate,
 		UpdateTypeConfigUpdate,
+		UpdateTypeAddonUpdate,
 	}
 }
