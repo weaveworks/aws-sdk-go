@@ -675,7 +675,6 @@
       ],
       "members":{
         "Name":{"shape":"DatasetName"},
-        "Format":{"shape":"InputFormat"},
         "FormatOptions":{"shape":"FormatOptions"},
         "Input":{"shape":"Input"},
         "Tags":{"shape":"TagMap"}
@@ -821,8 +820,7 @@
     "CsvOptions":{
       "type":"structure",
       "members":{
-        "Delimiter":{"shape":"Delimiter"},
-        "HeaderRow":{"shape":"HeaderRow"}
+        "Delimiter":{"shape":"Delimiter"}
       }
     },
     "CsvOutputOptions":{
@@ -860,7 +858,6 @@
         "CreatedBy":{"shape":"CreatedBy"},
         "CreateDate":{"shape":"Date"},
         "Name":{"shape":"DatasetName"},
-        "Format":{"shape":"InputFormat"},
         "FormatOptions":{"shape":"FormatOptions"},
         "Input":{"shape":"Input"},
         "LastModifiedDate":{"shape":"Date"},
@@ -1008,7 +1005,6 @@
         "CreatedBy":{"shape":"CreatedBy"},
         "CreateDate":{"shape":"Date"},
         "Name":{"shape":"DatasetName"},
-        "Format":{"shape":"InputFormat"},
         "FormatOptions":{"shape":"FormatOptions"},
         "Input":{"shape":"Input"},
         "LastModifiedDate":{"shape":"Date"},
@@ -1207,8 +1203,7 @@
       "type":"structure",
       "members":{
         "SheetNames":{"shape":"SheetNameList"},
-        "SheetIndexes":{"shape":"SheetIndexList"},
-        "HeaderRow":{"shape":"HeaderRow"}
+        "SheetIndexes":{"shape":"SheetIndexList"}
       }
     },
     "ExecutionTime":{"type":"integer"},
@@ -1220,7 +1215,6 @@
         "Csv":{"shape":"CsvOptions"}
       }
     },
-    "HeaderRow":{"type":"boolean"},
     "HiddenColumnList":{
       "type":"list",
       "member":{"shape":"ColumnName"}
@@ -1231,15 +1225,6 @@
         "S3InputDefinition":{"shape":"S3Location"},
         "DataCatalogInputDefinition":{"shape":"DataCatalogInputDefinition"}
       }
-    },
-    "InputFormat":{
-      "type":"string",
-      "enum":[
-        "CSV",
-        "JSON",
-        "PARQUET",
-        "EXCEL"
-      ]
     },
     "InternalServerException":{
       "type":"structure",
@@ -2106,7 +2091,6 @@
           "location":"uri",
           "locationName":"name"
         },
-        "Format":{"shape":"InputFormat"},
         "FormatOptions":{"shape":"FormatOptions"},
         "Input":{"shape":"Input"}
       }

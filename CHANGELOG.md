@@ -1,25 +1,8 @@
-Release v1.37.19 (2021-02-25)
-===
-
-### Service Client Updates
-* `service/databrew`: Updates service API and documentation
-* `service/detective`: Updates service API and documentation
-* `service/imagebuilder`: Updates service API, documentation, and paginators
-* `service/lightsail`: Updates service documentation
-  * Documentation updates for Lightsail
-* `service/transfer`: Updates service API
-  * Corrected the upper limit for TestIdentityProvider input lengths to 1024 characters
-
 Release v1.37.18 (2021-02-24)
 ===
 
 ### Service Client Updates
-* `service/appflow`: Updates service API and documentation
-* `service/compute-optimizer`: Updates service documentation
-* `service/ecr-public`: Updates service API and documentation
-* `service/es`: Updates service API, documentation, and paginators
-  * Amazon Elasticsearch Service now supports Auto-Tune, which monitors performance metrics and automatically optimizes domains
-* `service/mediapackage-vod`: Updates service API and documentation
+* `service/eks`: Updates service API and documentation
 
 Release v1.37.17 (2021-02-23)
 ===
